@@ -292,7 +292,7 @@ function resetGame() {
     playAgainBtn.classList.add('hidden');
 
     drawTargetArtwork();
-    updateRevealState();
+    // updateRevealState() will be called automatically when the image finishes loading
     input.focus();
 }
 
