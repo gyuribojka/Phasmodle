@@ -22,11 +22,26 @@ const emojiCluesBox = document.getElementById('emoji-clues');
 const emojiProgress = document.getElementById('emoji-progress');
 
 const emojiProfiles = {
-    'Spirit': ['🕯️🚫👻', '🧂❌⭐', '⏱️1️⃣8️⃣0️⃣', '😐🏃'],
-    'Wraith': ['🧂🚫👣', '📡⚡👤', '👣❌', '🫥🛸'],
-    'Phantom': ['📸👻❌', '👀😨', '🫥🫥', '😱📉'],
-    'Poltergeist': ['📦📦📦', '🌀🏠', '🪑🛋️🧸', '💥🎯'],
-    'Banshee': ['🎯1️⃣👤', '🎧😱', '🎤👻', '🏃‍♂️💀'],
+    'Spirit': [
+        ['🕯️🚫👻', '🧂❌⭐', '⏱️1️⃣8️⃣0️⃣', '😐🏃'],
+        ['👻📓', '🗣️📻', '🖐️📖', '🏃‍♂️🚪']
+    ],
+    'Wraith': [
+        ['🧂🚫👣', '📡⚡👤', '👣❌', '🫥🛸'],
+        ['👻📓', '🗣️📻', '🌡️❄️', '👣🚫']
+    ],
+    'Phantom': [
+        ['📸👻❌', '👀😨', '🫥🫥', '😱📉'],
+        ['🗣️📻', '🖐️📖', '🟢🔦', '📸🫥']
+    ],
+    'Poltergeist': [
+        ['📦📦📦', '🌀🏠', '🪑🛋️🧸', '💥🎯'],
+        ['🗣️📻', '🖐️📖', '👻📓', '💥📦']
+    ],
+    'Banshee': [
+        ['🎯1️⃣👤', '🎧😱', '🎤👻', '🏃‍♂️💀'],
+        ['🖐️📖', '👻📓', '🟢🔦', '🎤😱']
+    ],
     'Jinn': ['💡⚡⬆️', '🔌✅', '⚡🧠⬇️', '🏃‍♂️💨'],
     'Mare': ['🌑❤️', '💡❌', '💥💡', '🌘🔪'],
     'Revenant': ['🐢❓', '👀➡️🚀', '🧊➡️🔥', '🏃💀'],
@@ -43,12 +58,12 @@ const emojiProfiles = {
     'Raiju': ['📱⚡➡️💨', '🔦📡📈', '🔌🧲', '🏃‍♂️⚡'],
     'Obake': ['✋6️⃣', '👻🔁', '🫥🫥', '🕵️'],
     'The Mimic': ['🎭👻', '🧊📦➕', '🟣☁️🎣', '❓🪞'],
-    'Moroi': ['🗣️➡️ cursed', '🧠⬇️➡️💨', '🕯️⏱️1️⃣2️⃣', '😷'],
-    'Deogen': ['🙈❌', '🏃 far➡️💨', '👤 near➡️🐢', '😮‍💨🎙️'],
+    'Moroi': ['🗣️➡️🤬', '🧠⬇️➡️💨', '🕯️⏱️1️⃣2️⃣', '😷'],
+    'Deogen': ['🙈❌', '🏃🔙➡️💨', '👤🔜➡️🐢', '😮‍💨🎙️'],
     'Thaye': ['👶➡️👴', '⏳📉', '🏃📉', '👀➡️🚫📈'],
-    'Dayan': ['👩👻', '🏃 near➡️💨', '🧍 still➡️🐢', '🧂👣✅ UV❌'],
+    'Dayan': ['👩👻', '🏃🔜➡️💨', '🧍🛑➡️🐢', '🧂👣✅ 🟣❌'],
     'Gallu': ['😌😡😴', '🛡️➡️😡', '✝️➡️😴', '🔁⚠️'],
-    'Obambo': ['😌🔁😡', '1️⃣0️⃣%/6️⃣5️⃣%', '🚪➡️room🔀', '🫥🏃']
+    'Obambo': ['😌🔁😡', '1️⃣0️⃣%/6️⃣5️⃣%', '🚪➡️🏠🔀', '🫥🏃']
 };
 
 const fallbackGhosts = Object.keys(emojiProfiles).map((name) => ({
@@ -165,19 +180,43 @@ function triggerConfetti() {
     }());
 }
 
+function getEmojiForEvidence(evidence) {
+    const evidenceEmojis = {
+        'EMF Level 5': '📟',
+        'Spirit Box': '📻',
+        'Ultraviolet': '🔦',
+        'Ghost Orb': '⚪',
+        'Ghost Writing': '📖',
+        'Freezing Temperatures': '❄️',
+        'D.O.T.S Projector': '🟢'
+    };
+    return evidenceEmojis[evidence] || evidence;
+}
+
 function getEmojiCluesForGhost(ghost) {
-    const profile = emojiProfiles[ghost.name];
-    if (profile && profile.length >= MAX_CLUES) {
-        return profile;
+    if (ghost.currentEmojiClues) {
+        return ghost.currentEmojiClues;
+    }
+
+    let profile = emojiProfiles[ghost.name];
+    if (profile) {
+        if (Array.isArray(profile[0])) {
+            profile = profile[Math.floor(Math.random() * profile.length)];
+        }
+        if (profile.length >= MAX_CLUES) {
+            ghost.currentEmojiClues = profile;
+            return profile;
+        }
     }
 
     const fallback = [
-        ghost.evidences[0] ? '🔎 ' + ghost.evidences[0] : '🔎 evidence',
-        ghost.evidences[1] ? '🧾 ' + ghost.evidences[1] : '🧾 evidence',
+        ghost.evidences[0] ? '🔎 ' + getEmojiForEvidence(ghost.evidences[0]) : '🔎 ❓',
+        ghost.evidences[1] ? '🧾 ' + getEmojiForEvidence(ghost.evidences[1]) : '🧾 ❓',
         '🧠 ' + ghost.sanity + '%',
         ghost.speed === 'Varies' ? '🏃❓' : ghost.speed === 'Fast' ? '🏃💨' : '🏃'
     ];
 
+    ghost.currentEmojiClues = fallback;
     return fallback;
 }
 
@@ -287,6 +326,7 @@ function resetGame() {
     wrongGuesses = 0;
     availableGhosts = [...ghosts];
     targetGhost = ghosts[Math.floor(Math.random() * ghosts.length)];
+    targetGhost.currentEmojiClues = null; // Clear old clues to generate a new shuffle
     lastGuessTime = 0;
     clearTimeout(guessCooldownTimer);
 
