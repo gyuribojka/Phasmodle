@@ -25,7 +25,7 @@ guessBtn.disabled = true;
 riddleDisplay.textContent = "Summoning spirits...";
 
 // Fetch the external JSON file
-fetch('lemmingblommingfrankotamas.json')
+fetch('ghosts.json')
     .then(response => response.json())
     .then(data => {
         ghosts = data;
