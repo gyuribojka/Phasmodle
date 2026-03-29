@@ -245,19 +245,21 @@ function handleGuess() {
 
     let guessedGhost = availableGhosts.find((g) => g.name.toLowerCase() === guessName);
 
+    // If an exact match isn't found, try finding a partial match
     if (!guessedGhost) {
         const partialMatches = availableGhosts.filter((g) => g.name.toLowerCase().includes(guessName));
-        if (partialMatches.length > 0) {
+        if (partialMatches.length === 1) { // Only fallback if there is exactly ONE unambiguous match
             guessedGhost = partialMatches[0];
         }
     }
 
     if (!guessedGhost) {
-        const isAlreadyGuessed = ghosts.find((g) => g.name.toLowerCase() === guessName);
+        // Optimization: Use array.some() instead of find() since we only need a boolean
+        const isAlreadyGuessed = ghosts.some((g) => g.name.toLowerCase() === guessName);
         if (isAlreadyGuessed) {
             showError('You already guessed that ghost.');
         } else {
-            showError('Ghost not recognized.');
+            showError('Ghost not recognized or too ambiguous.');
         }
         return;
     }

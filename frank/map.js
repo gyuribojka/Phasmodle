@@ -1,27 +1,27 @@
 const places = [
     {
         name: 'Tanglewood Drive',
-        images: ['screenshots/tanglewood_1.png'],
+        images: ['screenshots/tanglewood_1.png', 'screenshots/tanglewood_2.png', 'screenshots/tanglewood_3.png', 'screenshots/tanglewood_4.png', 'screenshots/tanglewood_5.png', 'screenshots/tanglewood_6.png', 'screenshots/tanglewood_7.png', 'screenshots/tanglewood_8.png', 'screenshots/tanglewood_9.png'],
         hint: 'Small suburban house map with a compact interior.'
     },
     {
         name: 'Willow Street House',
-        images: ['screenshots/willow_1.png'],
+        images: ['screenshots/willow_1.png', 'screenshots/willow_2.png', 'screenshots/willow_3.png', 'screenshots/willow_4.png', 'screenshots/willow_5.png'],
         hint: 'Another small house map, but with a more stretched layout.'
     },
     {
         name: 'Edgefield Road',
-        images: ['screenshots/edgefield_1.png'],
+        images: ['screenshots/edgefield_1.png', 'screenshots/edgefield_2.png', 'screenshots/edgefield_3.png', 'screenshots/edgefield_4.png', 'screenshots/edgefield_5.png', 'screenshots/edgefield_6.png'],
         hint: 'Six-bedroom, two-story tall house with a basement.'
     },
     {
         name: 'Ridgeview Court',
-        images: ['screenshots/ridgeview_1.png'],
+        images: ['screenshots/ridgeview_1.png', 'screenshots/ridgeview_2.png', 'screenshots/ridgeview_3.png', 'screenshots/ridgeview_4.png', 'screenshots/ridgeview_5.png', 'screenshots/ridgeview_6.png', 'screenshots/ridgeview_7.png'],
         hint: 'Two-story suburban house with a long hallway.'
     },
     {
         name: 'Grafton Farmhouse',
-        images: ['screenshots/grafton_1.png'],
+        images: ['screenshots/grafton_1.png', 'screenshots/grafton_2.png', 'screenshots/grafton_3.png', 'screenshots/grafton_4.png', 'screenshots/grafton_5.png', 'screenshots/grafton_6.png', 'screenshots/grafton_7.png', 'screenshots/grafton_8.png', 'screenshots/grafton_9.png', 'screenshots/grafton_10.png', 'screenshots/grafton_11.png'],
         hint: 'A two-story farmhouse layout with large spacious rooms.'
     },
     {
@@ -31,12 +31,12 @@ const places = [
     },
     {
         name: 'Camp Woodwind',
-        images: ['screenshots/woodwind_1.png'],
+        images: ['screenshots/woodwind_1.png', 'screenshots/woodwind_2.png', 'screenshots/woodwind_3.png', 'screenshots/woodwind_4.png', 'screenshots/woodwind_5.png', 'screenshots/woodwind_6.png', 'screenshots/woodwind_7.png', 'screenshots/woodwind_8.png', 'screenshots/woodwind_9.png'],
         hint: 'Small outdoor campsite map, a scaled down version.'
     },
     {
         name: 'Maple Lodge Campsite',
-        images: ['screenshots/maple_1.png'],
+        images: ['screenshots/maple_1.png', 'screenshots/maple_2.png', 'screenshots/maple_3.png', 'screenshots/maple_4.png', 'screenshots/maple_5.png', 'screenshots/maple_6.png', 'screenshots/maple_7.png', 'screenshots/maple_8.png', 'screenshots/maple_9.png', 'screenshots/maple_10.png'],
         hint: 'Outdoor map with cabins, trails, and open ground.'
     },
     {
@@ -50,19 +50,19 @@ const places = [
         hint: 'Long cell blocks and central corridors define this location.'
     },
     {
-        name: 'Sunny Meadows',
+        name: 'Sunny Meadows / Restricted',
         images: ['screenshots/sunnymeadows_1.png'],
-        hint: 'Massive asylum-like map with many wings and rooms.'
-    },
-    {
-        name: 'Sunny Meadows Restricted',
-        images: ['screenshots/sunnymeadowsrestricted_1.png'],
-        hint: 'A smaller restricted variant of the massive asylum.'
+        hint: 'Massive asylum-like map with many wings and rooms. Includes its smaller restricted variant.'
     },
     {
         name: 'Point Hope',
-        images: ['screenshots/pointhope_1.png'],
+        images: ['screenshots/pointhope_1.png', 'screenshots/pointhope_2.png', 'screenshots/pointhope_3.png', 'screenshots/pointhope_4.png', 'screenshots/pointhope_5.png', 'screenshots/pointhope_6.png', 'screenshots/pointhope_7.png', 'screenshots/pointhope_8.png', 'screenshots/pointhope_9.png', 'screenshots/pointhope_10.png', 'screenshots/pointhope_11.png', 'screenshots/pointhope_12.png'],
         hint: 'Tall vertical location around a lighthouse structure.'
+    },
+    {
+        name: 'Nells Diner',
+        images: ['screenshots/nellsdiner_1.png', 'screenshots/nellsdiner_2.png', 'screenshots/nellsdiner_3.png', 'screenshots/nellsdiner_4.png', 'screenshots/nellsdiner_5.png', 'screenshots/nellsdiner_6.png', 'screenshots/nellsdiner_7.png', 'screenshots/nellsdiner_8.png', 'screenshots/nellsdiner_9.png', 'screenshots/nellsdiner_10.png'],
+        hint: 'A roadside diner with a dining area, kitchen, and restrooms.'
     }
 ];
 
@@ -114,8 +114,12 @@ function initialize() {
     availablePlaces = [...places].sort((a, b) => a.name.localeCompare(b.name));
 
     input.addEventListener('input', handleInput);
+    input.addEventListener('blur', () => {
+        // Delay hiding slightly to allow mousedown on suggestions to fire
+        setTimeout(() => suggestionsList.classList.add('hidden'), 150);
+    });
     document.addEventListener('click', (e) => {
-        if (e.target !== input) {
+        if (e.target !== input && !suggestionsList.contains(e.target)) {
             suggestionsList.classList.add('hidden');
         }
     });
@@ -148,16 +152,21 @@ function handleInput() {
     }
 
     suggestionsList.classList.remove('hidden');
+    
+    // Optimization: Use DocumentFragment to batch DOM insertions
+    const fragment = document.createDocumentFragment();
     matches.forEach((match) => {
         const li = document.createElement('li');
         li.textContent = match.name;
-        li.addEventListener('click', () => {
+        li.addEventListener('mousedown', (e) => { // Use mousedown so it fires before blur
+            e.preventDefault(); // Prevent input blurring
             input.value = match.name;
             suggestionsList.classList.add('hidden');
             input.focus();
         });
-        suggestionsList.appendChild(li);
+        fragment.appendChild(li);
     });
+    suggestionsList.appendChild(fragment);
 }
 
 function showError(msg) {
@@ -213,17 +222,18 @@ function handleGuess() {
 
     if (!guessedPlace) {
         const partialMatches = availablePlaces.filter((p) => p.name.toLowerCase().includes(guessName));
-        if (partialMatches.length > 0) {
+        if (partialMatches.length === 1) { // Only fallback if there is exactly ONE unambiguous match
             guessedPlace = partialMatches[0];
         }
     }
 
     if (!guessedPlace) {
-        const already = places.find((p) => p.name.toLowerCase() === guessName);
+        // Optimization: Use array.some() instead of find() since we only need a boolean
+        const already = places.some((p) => p.name.toLowerCase() === guessName);
         if (already) {
             showError('You already guessed that place.');
         } else {
-            showError('Place not recognized.');
+            showError('Place not recognized or too ambiguous.');
         }
         return;
     }
