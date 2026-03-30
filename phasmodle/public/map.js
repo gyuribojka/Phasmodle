@@ -1,68 +1,68 @@
 const places = [
     {
         name: 'Tanglewood Drive',
-        images: ['screenshots/tanglewood_1.png'],
+        images: ['https://rogers.kaposztaleves.hu/screenshots/tanglewood_1.png', 'https://rogers.kaposztaleves.hu/screenshots/tanglewood_2.png', 'https://rogers.kaposztaleves.hu/screenshots/tanglewood_3.png', 'https://rogers.kaposztaleves.hu/screenshots/tanglewood_4.png', 'https://rogers.kaposztaleves.hu/screenshots/tanglewood_5.png', 'https://rogers.kaposztaleves.hu/screenshots/tanglewood_6.png', 'https://rogers.kaposztaleves.hu/screenshots/tanglewood_7.png', 'https://rogers.kaposztaleves.hu/screenshots/tanglewood_8.png', 'https://rogers.kaposztaleves.hu/screenshots/tanglewood_9.png'],
         hint: 'Small suburban house map with a compact interior.'
     },
     {
         name: 'Willow Street House',
-        images: ['screenshots/willow_1.png'],
+        images: ['https://rogers.kaposztaleves.hu/screenshots/willow_1.png', 'https://rogers.kaposztaleves.hu/screenshots/willow_2.png', 'https://rogers.kaposztaleves.hu/screenshots/willow_3.png', 'https://rogers.kaposztaleves.hu/screenshots/willow_4.png', 'https://rogers.kaposztaleves.hu/screenshots/willow_5.png'],
         hint: 'Another small house map, but with a more stretched layout.'
     },
     {
         name: 'Edgefield Road',
-        images: ['screenshots/edgefield_1.png'],
+        images: ['https://rogers.kaposztaleves.hu/screenshots/edgefield_1.png', 'https://rogers.kaposztaleves.hu/screenshots/edgefield_2.png', 'https://rogers.kaposztaleves.hu/screenshots/edgefield_3.png', 'https://rogers.kaposztaleves.hu/screenshots/edgefield_4.png', 'https://rogers.kaposztaleves.hu/screenshots/edgefield_5.png', 'https://rogers.kaposztaleves.hu/screenshots/edgefield_6.png'],
         hint: 'Six-bedroom, two-story tall house with a basement.'
     },
     {
         name: 'Ridgeview Court',
-        images: ['screenshots/ridgeview_1.png'],
+        images: ['https://rogers.kaposztaleves.hu/screenshots/ridgeview_1.png', 'https://rogers.kaposztaleves.hu/screenshots/ridgeview_2.png', 'https://rogers.kaposztaleves.hu/screenshots/ridgeview_3.png', 'https://rogers.kaposztaleves.hu/screenshots/ridgeview_4.png', 'https://rogers.kaposztaleves.hu/screenshots/ridgeview_5.png', 'https://rogers.kaposztaleves.hu/screenshots/ridgeview_6.png', 'https://rogers.kaposztaleves.hu/screenshots/ridgeview_7.png'],
         hint: 'Two-story suburban house with a long hallway.'
     },
     {
         name: 'Grafton Farmhouse',
-        images: ['screenshots/grafton_1.png'],
+        images: ['https://rogers.kaposztaleves.hu/screenshots/grafton_1.png', 'https://rogers.kaposztaleves.hu/screenshots/grafton_2.png', 'https://rogers.kaposztaleves.hu/screenshots/grafton_3.png', 'https://rogers.kaposztaleves.hu/screenshots/grafton_4.png', 'https://rogers.kaposztaleves.hu/screenshots/grafton_5.png', 'https://rogers.kaposztaleves.hu/screenshots/grafton_6.png', 'https://rogers.kaposztaleves.hu/screenshots/grafton_7.png', 'https://rogers.kaposztaleves.hu/screenshots/grafton_8.png', 'https://rogers.kaposztaleves.hu/screenshots/grafton_9.png', 'https://rogers.kaposztaleves.hu/screenshots/grafton_10.png', 'https://rogers.kaposztaleves.hu/screenshots/grafton_11.png'],
         hint: 'A two-story farmhouse layout with large spacious rooms.'
     },
     {
         name: 'Bleasdale Farmhouse',
-        images: ['screenshots/bleasdale_1.png'],
+        images: ['https://rogers.kaposztaleves.hu/screenshots/bleasdale_1.png'],
         hint: 'Large old farmhouse with rustic surroundings and an attic.'
     },
     {
         name: 'Camp Woodwind',
-        images: ['screenshots/woodwind_1.png'],
+        images: ['https://rogers.kaposztaleves.hu/screenshots/woodwind_1.png', 'https://rogers.kaposztaleves.hu/screenshots/woodwind_2.png', 'https://rogers.kaposztaleves.hu/screenshots/woodwind_3.png', 'https://rogers.kaposztaleves.hu/screenshots/woodwind_4.png', 'https://rogers.kaposztaleves.hu/screenshots/woodwind_5.png', 'https://rogers.kaposztaleves.hu/screenshots/woodwind_6.png', 'https://rogers.kaposztaleves.hu/screenshots/woodwind_7.png', 'https://rogers.kaposztaleves.hu/screenshots/woodwind_8.png', 'https://rogers.kaposztaleves.hu/screenshots/woodwind_9.png'],
         hint: 'Small outdoor campsite map, a scaled down version.'
     },
     {
         name: 'Maple Lodge Campsite',
-        images: ['screenshots/maple_1.png'],
+        images: ['https://rogers.kaposztaleves.hu/screenshots/maple_1.png', 'https://rogers.kaposztaleves.hu/screenshots/maple_2.png', 'https://rogers.kaposztaleves.hu/screenshots/maple_3.png', 'https://rogers.kaposztaleves.hu/screenshots/maple_4.png', 'https://rogers.kaposztaleves.hu/screenshots/maple_5.png', 'https://rogers.kaposztaleves.hu/screenshots/maple_6.png', 'https://rogers.kaposztaleves.hu/screenshots/maple_7.png', 'https://rogers.kaposztaleves.hu/screenshots/maple_8.png', 'https://rogers.kaposztaleves.hu/screenshots/maple_9.png', 'https://rogers.kaposztaleves.hu/screenshots/maple_10.png'],
         hint: 'Outdoor map with cabins, trails, and open ground.'
     },
     {
         name: 'Brownstone High School',
-        images: ['screenshots/brownstone_1.png'],
+        images: ['https://rogers.kaposztaleves.hu/screenshots/brownstone_1.png'],
         hint: 'Symmetrical school-like structure with long hallways.'
     },
     {
         name: 'Prison',
-        images: ['screenshots/prison_1.png'],
+        images: ['https://rogers.kaposztaleves.hu/screenshots/prison_1.png'],
         hint: 'Long cell blocks and central corridors define this location.'
     },
     {
-        name: 'Sunny Meadows',
-        images: ['screenshots/sunnymeadows_1.png'],
-        hint: 'Massive asylum-like map with many wings and rooms.'
-    },
-    {
-        name: 'Sunny Meadows Restricted',
-        images: ['screenshots/sunnymeadowsrestricted_1.png'],
-        hint: 'A smaller restricted variant of the massive asylum.'
+        name: 'Sunny Meadows / Restricted',
+        images: ['https://rogers.kaposztaleves.hu/screenshots/sunnymeadows_1.png'],
+        hint: 'Massive asylum-like map with many wings and rooms. Includes its smaller restricted variant.'
     },
     {
         name: 'Point Hope',
-        images: ['screenshots/pointhope_1.png'],
+        images: ['https://rogers.kaposztaleves.hu/screenshots/pointhope_1.png', 'https://rogers.kaposztaleves.hu/screenshots/pointhope_2.png', 'https://rogers.kaposztaleves.hu/screenshots/pointhope_3.png', 'https://rogers.kaposztaleves.hu/screenshots/pointhope_4.png', 'https://rogers.kaposztaleves.hu/screenshots/pointhope_5.png', 'https://rogers.kaposztaleves.hu/screenshots/pointhope_6.png', 'https://rogers.kaposztaleves.hu/screenshots/pointhope_7.png', 'https://rogers.kaposztaleves.hu/screenshots/pointhope_8.png', 'https://rogers.kaposztaleves.hu/screenshots/pointhope_9.png', 'https://rogers.kaposztaleves.hu/screenshots/pointhope_10.png', 'https://rogers.kaposztaleves.hu/screenshots/pointhope_11.png', 'https://rogers.kaposztaleves.hu/screenshots/pointhope_12.png'],
         hint: 'Tall vertical location around a lighthouse structure.'
+    },
+    {
+        name: 'Nells Diner',
+        images: ['https://rogers.kaposztaleves.hu/screenshots/nellsdiner_1.png', 'https://rogers.kaposztaleves.hu/screenshots/nellsdiner_2.png', 'https://rogers.kaposztaleves.hu/screenshots/nellsdiner_3.png', 'https://rogers.kaposztaleves.hu/screenshots/nellsdiner_4.png', 'https://rogers.kaposztaleves.hu/screenshots/nellsdiner_5.png', 'https://rogers.kaposztaleves.hu/screenshots/nellsdiner_6.png', 'https://rogers.kaposztaleves.hu/screenshots/nellsdiner_7.png', 'https://rogers.kaposztaleves.hu/screenshots/nellsdiner_8.png', 'https://rogers.kaposztaleves.hu/screenshots/nellsdiner_9.png', 'https://rogers.kaposztaleves.hu/screenshots/nellsdiner_10.png'],
+        hint: 'A roadside diner with a dining area, kitchen, and restrooms.'
     }
 ];
 
@@ -401,5 +401,6 @@ function drawZoomReveal(unlocked) {
     zoomCtx.lineWidth = 3;
     zoomCtx.strokeRect(3, 3, zoomCanvas.width - 6, zoomCanvas.height - 6);
 }
+
 
 
