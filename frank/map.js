@@ -271,9 +271,9 @@ function handleGuess() {
     updateRevealState();
 }
 
-function renderGuessedItem(place) {
+function renderGuessedItem(place, isCorrect) {
     const item = document.createElement('div');
-    item.className = 'guessed-item wrong';
+    item.className = 'guessed-item ' + (isCorrect ? 'correct' : 'wrong');
     item.textContent = place.name;
     guessedList.appendChild(item);
 }
