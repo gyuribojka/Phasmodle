@@ -231,7 +231,7 @@ function handleGuess() {
     startGuessCooldown();
     availablePlaces = availablePlaces.filter((p) => p.name !== guessedPlace.name);
 
-    renderGuessedItem(guessedPlace);
+    renderGuessedItem(guessedPlace, guessedPlace.name === targetPlace.name);
     input.value = '';
     input.focus();
     suggestionsList.classList.add('hidden');
